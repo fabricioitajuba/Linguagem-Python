@@ -1,0 +1,22 @@
+-Para a versão grátis:
+$ sudo snap install pycharm-community --classic
+
+-Para a versão paga:
+sudo snap install pycharm-professional --classic
+
+Se o snap não estiver instalado, instalar
+
+ou 
+
+1 - fazer o download do pycharm no site;
+
+2 - Descompacte o arquivo;
+
+3 - Utilizando o terminal, entre na pasta do arquivo descompactado e entre na pasta /bin;
+
+4 - Execute o seguinte comando:
+
+$ ./pycharm.sh 
+
+
+

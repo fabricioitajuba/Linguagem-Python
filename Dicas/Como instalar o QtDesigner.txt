@@ -1,0 +1,5 @@
+https://pythonbasics.org/qt-designer-python/
+
+sudo apt-get install qttools5-dev-tools
+sudo apt-get install qttools5-dev
+
