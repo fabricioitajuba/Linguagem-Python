@@ -1,3 +1,4 @@
+#!/usr/bin/python3.9
 from PyQt5 import uic,QtWidgets
 
 def funcao_principal():
