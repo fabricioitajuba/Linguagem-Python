@@ -28,11 +28,19 @@ resultado = StringVar()
 #---------------------------------------------------------
 # widgets
 label1 = Label(form, text = "Entre com o valor de A: ")
-textbox1 = Entry(form)
+
+v1 = StringVar(form, value='0')
+textbox1 = Entry(form, textvariable = v1, justify='center')
+
 label2 = Label(form, text = "Entre com o valor de B: ")
-textbox2 = Entry(form)
+
+v2 = StringVar(form, value='0')
+textbox2 = Entry(form, textvariable = v2, justify='center')
+
 button1 = Button(form, text = "Calcular", command = calcular)
+
 label3 = Label(form, text = "O valor de A+B= ")
+
 label_resultado = Label(form, textvariable = resultado, anchor="w")
 
 #---------------------------------------------------------
