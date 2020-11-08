@@ -20,12 +20,14 @@ def calcular():
 # GUI
 form = Tk() 							#método construdor
 form.title("Soma entre dois números") 	#Insere um título
+form.geometry("400x100+100+100")		#LarguraxAltura+X+Y
+form.resizable(False, False)			#Permitir redimensionamento manual (X,Y)
 
 resultado = StringVar()
 
 #---------------------------------------------------------
 # widgets
-label1 = Label(form, text = "Entre com o valor de A: ", anchor="e")
+label1 = Label(form, text = "Entre com o valor de A: ")
 textbox1 = Entry(form)
 label2 = Label(form, text = "Entre com o valor de B: ")
 textbox2 = Entry(form)
@@ -51,9 +53,9 @@ textbox2.grid(row = 1, column = 1)
 button1.grid(row = 1, column = 3)
 
 label3.config(font=("Arial", 15))
-label3.grid(row = 2, column = 0)
+label3.grid(row = 2, column = 0, sticky=E)
 
-label_resultado.config(width = 5)
+label_resultado.config(width = 5, font=("Arial", 15))
 label_resultado.grid(row = 2, column = 1)
 
 form.mainloop() 						#método principal
