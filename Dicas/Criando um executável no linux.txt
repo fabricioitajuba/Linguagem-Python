@@ -1,0 +1,52 @@
+## maneira simples:
+https://www.youtube.com/watch?v=hsuL-rqYWGU&t=300s
+
+1 - execute o seu programa através do comando a seguir para saber se ele está realmente funcionando:
+
+$ python3.9 teste.py
+
+2 - descubra em qual pasta está instalado o python através do comando:
+
+$ which python3.9
+
+Normalmente está na pasta: /usr/bin/python3.9
+
+3 - através do nano, abra o arquivo teste.py e insira a seguinte linha no início do programa:
+
+#!/usr/bin/python3.9
+
+salve e feche o arquivo.
+
+4 - transforme-0 em executável:
+
+$ sudo chmod +x teste.py
+
+5 - para executar, use o seguinte comando:
+
+$ ./teste.py
+
+6 - (Opcional) se quiser criar um "apelido":
+
+$ alias teste1=/media/fabricio/Dados/Github/Python/QTDesigner/Ex01-RadioButton/teste.py
+
+para executar:
+
+teste1
+
+----------------------------------------------------
+Outra maneira
+
+#Para instalar o programa
+pip install pyinstaller
+Ou
+pip3 install pyinstaller
+
+#Para gerar o executável
+pyinstaller -onefile -windowed arquivo.py
+Ou
+pyinstaller --onefile -windowed arquivo.py
+Ou
+pyinstaller -onefile --windowed arquivo.py
+
+*Depois abra o terminal na pasta dist*
+Digite ./arquivo *Aqui não precisamos mais colocar .py,pois já e um exe,esse comando serve para abrir seu executável 
