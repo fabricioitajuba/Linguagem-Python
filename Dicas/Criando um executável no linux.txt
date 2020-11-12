@@ -42,6 +42,11 @@ Ou
 pip3 install pyinstaller
 
 #Para gerar o executável
+pyinstaller --onefile arquivo.py
+
+
+
+#Outras formas (não funcionou)
 pyinstaller -onefile -windowed arquivo.py
 Ou
 pyinstaller --onefile -windowed arquivo.py
