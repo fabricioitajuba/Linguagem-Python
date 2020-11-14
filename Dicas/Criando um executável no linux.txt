@@ -1,4 +1,28 @@
 ## maneira simples:
+
+#Para instalar o programa
+sudo apt-get install libpython3.9-dev
+
+$ pip3 install pyinstaller
+
+#Para gerar o executável em um único arquivo
+
+$ pyinstaller --onefile arquivo.py
+
+#Para gerar o executável com as dependências
+
+$ pyinstaller arquivo.py
+
+*Depois abra o terminal na pasta dist*
+Digite ./arquivo 
+
+Caso tenha problemas com o tkinter:
+
+$ sudo apt install python3.9-tk
+
+----------------------------------------------------
+Outra maneira
+
 https://www.youtube.com/watch?v=hsuL-rqYWGU&t=300s
 
 1 - execute o seu programa através do comando a seguir para saber se ele está realmente funcionando:
@@ -33,21 +57,3 @@ para executar:
 
 teste1
 
-----------------------------------------------------
-Outra maneira
-
-#Para instalar o programa
-sudo apt-get install libpython3.9-dev
-
-pip install pyinstaller
-Ou
-pip3 install pyinstaller
-
-#Para gerar o executável em um único arquivo
-pyinstaller --onefile arquivo.py
-
-#Para gerar o executável com as dependências
-pyinstaller arquivo.py
-
-*Depois abra o terminal na pasta dist*
-Digite ./arquivo 
