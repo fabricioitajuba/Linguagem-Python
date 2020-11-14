@@ -1,22 +1,19 @@
-Primeiro, você precisa ver qual é a versão default atual da sua instalação Linux com um dos seguintes comandos: 
+-Verifique a localização do python 3
 
-$ python -V
-Python 2.7.15rc1 
+$ which python3
+/usr/bin/python3
 
-ou 
+-Escreva o alias em bash_profile
 
-$ ls -l /usr/bin/python
-lrwxrwxrwx 1 root root 18 abr 29 22:30 /usr/bin/python -> /usr/bin/python2.7 
+vi ~/.bash_profile  
+alias python='/usr/local/python3'
 
-Perceba que a versão default é somente um link simbólico para a versão correspondente. 
+-Recarregar bash_profile
 
-Portanto, o que devemos fazer é somente recriar o link simbólico apontando para a outra versão. Irei alterar do Python 2.7 para o 3.6. 
+source ~/.bash_profile
 
-$ sudo ln -sf /usr/bin/python3.6 /usr/bin/python 
+-Confirme o comando python
 
-Para verificar: 
+$ python --version
+Python 3.6.5
 
-$ python -V
-Python 3.6.5 
-
-É interessante você realize essa alteração quando algum script em Python que você executa apresenta diversos erros de sintaxe, ou caso você utilize a versão 3.x (como 3.5 ou 3.6) do Python. 
