@@ -42,6 +42,6 @@ lb = Label(form)
 lb.place(x=180, y=80)
 
 form.geometry("350x110+200+200")
-form.title("Somaentre 2 números")
+form.title("Soma entre 2 números")
 
 form.mainloop()
