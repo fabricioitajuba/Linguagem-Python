@@ -1,0 +1,22 @@
+Primeiro, você precisa ver qual é a versão default atual da sua instalação Linux com um dos seguintes comandos: 
+
+$ python -V
+Python 2.7.15rc1 
+
+ou 
+
+$ ls -l /usr/bin/python
+lrwxrwxrwx 1 root root 18 abr 29 22:30 /usr/bin/python -> /usr/bin/python2.7 
+
+Perceba que a versão default é somente um link simbólico para a versão correspondente. 
+
+Portanto, o que devemos fazer é somente recriar o link simbólico apontando para a outra versão. Irei alterar do Python 2.7 para o 3.6. 
+
+$ sudo ln -sf /usr/bin/python3.6 /usr/bin/python 
+
+Para verificar: 
+
+$ python -V
+Python 3.6.5 
+
+É interessante você realize essa alteração quando algum script em Python que você executa apresenta diversos erros de sintaxe, ou caso você utilize a versão 3.x (como 3.5 ou 3.6) do Python. 

@@ -37,21 +37,17 @@ teste1
 Outra maneira
 
 #Para instalar o programa
+sudo apt-get install libpython3.9-dev
+
 pip install pyinstaller
 Ou
 pip3 install pyinstaller
 
-#Para gerar o executável
+#Para gerar o executável em um único arquivo
 pyinstaller --onefile arquivo.py
 
-
-
-#Outras formas (não funcionou)
-pyinstaller -onefile -windowed arquivo.py
-Ou
-pyinstaller --onefile -windowed arquivo.py
-Ou
-pyinstaller -onefile --windowed arquivo.py
+#Para gerar o executável com as dependências
+pyinstaller arquivo.py
 
 *Depois abra o terminal na pasta dist*
-Digite ./arquivo *Aqui não precisamos mais colocar .py,pois já e um exe,esse comando serve para abrir seu executável 
+Digite ./arquivo 
