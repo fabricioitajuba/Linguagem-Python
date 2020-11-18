@@ -6,7 +6,7 @@ $ which python3
 -Escreva o alias em bash_profile
 
 vi ~/.bash_profile  
-alias python='/usr/local/python3'
+alias python='/usr/bin/python3'
 
 -Recarregar bash_profile
 
