@@ -2,7 +2,7 @@
 
 #Fabricio de Lima Ribeiro
 #08/11/2020
-#Scrollbar
+#Listbox
 #para executar: $ python main01.py
 
 from tkinter import *
