@@ -4,12 +4,12 @@
 #Fabricio de Lima Ribeiro
 #08/11/2020
 #Relógio digital
-#para executar: $ python Teste-07.py
+#para executar: $ python main02.py
 
 # Display UTC.
 # started with https://docs.python.org/3.4/library/tkinter.html#module-tkinter
 
-import Tkinter as tk
+import tkinter as tk
 import time
 
 def current_iso8601():

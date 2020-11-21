@@ -3,7 +3,7 @@
 #Fabricio de Lima Ribeiro
 #07/11/2020
 #Formulário no centro da tela
-#para executar: $ python Exp-06.py
+#para executar: $ python main06.py
 
 from Tkinter import * 				#importação da classe
 

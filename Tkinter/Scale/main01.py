@@ -3,9 +3,9 @@
 #Fabricio de Lima Ribeiro
 #08/11/2020
 #Scale
-#para executar: $ python Teste-05.py
+#para executar: $ python main01.py
 
-from Tkinter import *
+from tkinter import *
 
 def sel():
    selection = "Value = " + str(var.get())

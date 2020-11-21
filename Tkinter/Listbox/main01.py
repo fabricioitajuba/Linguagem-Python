@@ -3,9 +3,9 @@
 #Fabricio de Lima Ribeiro
 #08/11/2020
 #Scrollbar
-#para executar: $ python Teste-04.py
+#para executar: $ python main01.py
 
-from Tkinter import *
+from tkinter import *
 
 root = Tk()
 scrollbar = Scrollbar(root)

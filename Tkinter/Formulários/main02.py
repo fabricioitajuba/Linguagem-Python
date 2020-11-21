@@ -3,7 +3,7 @@
 #Fabricio de Lima Ribeiro
 #07/11/2020
 #como inserir um título
-#para executar: $ python Exp-02.py
+#para executar: $ python main02.py
 
 from Tkinter import * 			#importação da classe
 

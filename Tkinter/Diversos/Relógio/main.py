@@ -4,9 +4,9 @@
 #Fabricio de Lima Ribeiro
 #08/11/2020
 #Relógio digital
-#para executar: $ python Teste-08.py
+#para executar: $ python main.py
 
-import Tkinter as tk
+import tkinter as tk
 import time as tm
 
 def display_time():

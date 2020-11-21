@@ -3,7 +3,7 @@
 #Fabricio de Lima Ribeiro
 #14/11/2020
 #Processamento de dados
-#para executar: $ python3 Exp-07.py
+#para executar: $ python3 main.py
 
 from tkinter import *
 

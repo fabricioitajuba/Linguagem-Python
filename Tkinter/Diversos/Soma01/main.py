@@ -3,9 +3,9 @@
 #Fabricio de Lima Ribeiro
 #08/11/2020
 #Soma entre 2 números
-#para executar: $ python Teste-03.py
+#para executar: $ python main.py
 
-from Tkinter import * 					#importação da classe
+from tkinter import * 					#importação da classe
 
 #---------------------------------------------------------
 # Funções

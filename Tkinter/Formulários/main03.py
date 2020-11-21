@@ -3,7 +3,7 @@
 #Fabricio de Lima Ribeiro
 #07/11/2020
 #Dimensionamento
-#para executar: $ python Exp-03.py
+#para executar: $ python main03.py
 
 from Tkinter import * 				#importação da classe
 

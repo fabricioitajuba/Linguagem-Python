@@ -3,7 +3,7 @@
 #Fabricio de Lima Ribeiro
 #07/11/2020
 #Dimensionamento máximo e mínimo
-#para executar: $ python Exp-04.py
+#para executar: $ python main04.py
 
 from Tkinter import * 				#importação da classe
 

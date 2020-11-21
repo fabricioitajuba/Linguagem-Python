@@ -3,10 +3,10 @@
 #Fabricio de Lima Ribeiro
 #08/11/2020
 #Relógio
-#para executar: $ python Teste-06.py
+#para executar: $ python main01.py
 
 # for python 3.x use 'tkinter' rather than 'Tkinter'
-import Tkinter as tk
+import tkinter as tk
 import time
 
 class App():

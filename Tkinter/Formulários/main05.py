@@ -3,7 +3,7 @@
 #Fabricio de Lima Ribeiro
 #07/11/2020
 #Associando um botão
-#para executar: $ python Exp-05.py
+#para executar: $ python main05.py
 
 from Tkinter import * 				#importação da classe
 
