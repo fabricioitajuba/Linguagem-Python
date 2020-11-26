@@ -18,8 +18,6 @@ Xa = []
 Xb = []
 Xc = []
 
-formPrincipal = Tk()
-
 
 ################################################################################
 #Rotinas de comunicação
@@ -115,7 +113,7 @@ def formAbrir():
 
 ################################################################################
 #Rotina principal
-
+formPrincipal = Tk()
 #Criação do menu
 menubar = Menu(formPrincipal)
 #Menu Arquivo
