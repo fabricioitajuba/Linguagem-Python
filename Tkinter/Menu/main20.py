@@ -1,3 +1,7 @@
+#Menu para abrir arquivos
+#Fabrício de Lima Ribeiro
+#26/11/20
+
 from tkinter import Frame, Tk, BOTH, Text, Menu, END
 #import tkFileDialog 
 import tkinter.filedialog
