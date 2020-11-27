@@ -14,7 +14,7 @@ def worker(message):
         time.sleep(1)
  
 #Cria a thread
-t = threading.Thread(target=worker,args=("thread sendo iniciada",))
+t = threading.Thread(target=worker,args=("Thread sendo executada",))
 
 #Starta a thread
 t.start()
