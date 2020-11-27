@@ -10,9 +10,6 @@ import serial.tools.list_ports
 from tkinter import *
 
 
-formPrincipal = Tk()
-
-
 def get_ports():
 
     ports = serial.tools.list_ports.comports()
@@ -49,7 +46,7 @@ def formConectar():
 	lb_conexao.place(x=10, y=20)
 
 
-
+formPrincipal = Tk()
 
 #Criação do menu
 menubar = Menu(formPrincipal)
