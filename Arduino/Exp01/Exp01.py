@@ -7,3 +7,4 @@ while 1:
     arduinoData = ser.readline().decode('ascii')
     print(arduinoData)
 
+#ser.close()

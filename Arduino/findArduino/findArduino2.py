@@ -26,7 +26,8 @@ def findArduino(portsFound):
     return commPort
             
                     
-foundPorts = get_ports()        
+foundPorts = get_ports()      
+
 connectPort = findArduino(foundPorts)
 
 if connectPort != 'None':

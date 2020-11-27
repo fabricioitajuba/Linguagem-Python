@@ -14,10 +14,10 @@ try:
 	ser = serial.Serial('/dev/ttyACM0', baudrate=9600, timeout=1)
 except:
 	print("Placa não conectada")
-	sys.exit()
+	sys.exit() #Sai do programa
 
 time.sleep(3)
-numPoints = 10
+numPoints = 100
 dataList = [0]*numPoints
 
 def getValues():
@@ -40,8 +40,9 @@ t.start()
 #Aguardando a thread ser executada 
 while t.is_alive():
     print("Aguardando thread")
-    time.sleep(5)
+    time.sleep(1)
  
 print(dataList)
 print(dataList[0])
 
+ser.close()
