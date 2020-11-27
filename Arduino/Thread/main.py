@@ -5,11 +5,17 @@
 #Recebendo dados pela serial usando threading
 #para executar: $ python main.py
 
+import sys
 import threading
 import serial
 import time
 
-ser = serial.Serial('/dev/ttyACM0', baudrate=9600, timeout=1)
+try:
+	ser = serial.Serial('/dev/ttyACM0', baudrate=9600, timeout=1)
+except:
+	print("Placa não conectada")
+	sys.exit()
+
 time.sleep(3)
 numPoints = 10
 dataList = [0]*numPoints
