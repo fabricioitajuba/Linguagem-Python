@@ -20,15 +20,15 @@ idProduct          0x0005 Optical Mouse
 
 iremos utilizar o pyusb que pode ser instalado:
 
-pip install pyusb 
+*pip install pyusb* 
 
 ou
 
-pip3 install pyusb
+**_pip3 install pyusb_**
 
 para executar: 
 
-**sudo python3 main.py
+**sudo python3 main.py**
 
 se não reconhecer o "usb.core", instale o seguinte pacote:
 
