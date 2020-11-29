@@ -28,7 +28,7 @@ pip3 install pyusb
 
 para executar: 
 
-** ** sudo python3 main.py
+**sudo python3 main.py
 
 se não reconhecer o "usb.core", instale o seguinte pacote:
 
