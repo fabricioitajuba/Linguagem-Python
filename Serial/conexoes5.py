@@ -2,14 +2,12 @@
 #Fabricio de Lima Ribeiro
 #28/11/2020
 #Este programa acha as conexões ativas no computador e retorna em um ComboBox
-#25/11/20
 
 import sys
 import glob
 import serial
 from tkinter import *
 from tkinter import ttk
-
 
 if sys.platform.startswith('win'):
     ports = ['COM%s' % (i + 1) for i in range(256)]
@@ -33,13 +31,20 @@ for port in ports:
 
 ################################################################################
 # Trata conexão
-def serial_ports():
-	print('teste')
+def conecta():
+
+	global cb_conexao
+
+	porta = cb_conexao.get()
+
+	try:
+		ser = serial.Serial(porta, baudrate=9600, timeout=1)
+	except:
+		messagebox.showinfo("ERRO!", "Erro ao conectar!")
 
 
 ################################################################################
 # Form conexão
-
 formConexao = Tk()
 
 formConexao.geometry("350x150+200+200")
@@ -47,13 +52,16 @@ formConexao.resizable(False, False)
 formConexao.title("Conexões disponíveis...")
 
 if len(result) > 0:
-	lb_conexao = Label(formConexao, text ="Conexões disponíveis:")
+	lb_conexao = Label(formConexao, text="Conexões disponíveis:")
 	lb_conexao.pack()
 
-	cb_conexao = ttk.Combobox(formConexao, values = result)
+	#cb_conexao = ttk.Combobox(formConexao, values=result)
+	cb_conexao = ttk.Combobox(formConexao, state="readonly", values=result)
+	#cb_conexao.current(0)
 	cb_conexao.pack()
 
-	btn_conexao = Button(formConexao, text="Conectar", width=5, command=serial_ports)
+	#btn_conexao = Button(formConexao, text="Conectar", width=5, command=conecta)
+	btn_conexao = Button(formConexao, text="Conectar", width=5, command=conecta)
 	btn_conexao.pack()
 else:
 	lb_conexao = Label(formConexao, text ="Nenhuma conexão disponível!")
