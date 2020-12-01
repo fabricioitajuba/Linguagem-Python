@@ -2,7 +2,7 @@
 
 #Fabricio de Lima Ribeiro
 #27/11/2020
-#Recebendo dados pela serial usando threading
+#Recebendo dados pela serial usando threading (modo daemon)
 #para executar: $ python main.py
 
 import sys
@@ -32,7 +32,7 @@ def thread():
 		dataList[i] = data
  
 #Cria a thread
-t = threading.Thread(target=thread)
+t = threading.Thread(target=thread, daemon=True)
 
 #Starta a thread
 t.start()
