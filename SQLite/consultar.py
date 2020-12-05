@@ -18,16 +18,19 @@ def ConexaoBanco():
 	return con
 
 #Inserir dados
-def InserirDados(nome, nota):
+def ConsultaDado(nome):
 
-	sql = "INSERT INTO notas (nome, nota) VALUES('"+ nome +"', '"+ nota +"')"
+	sql = "SELECT * FROM notas WHERE nome LIKE '"+nome+"%'"
 	try:
 		conexao = ConexaoBanco()
 		c = conexao.cursor()
 		c.execute(sql)
-		conexao.commit()
-		print("Registro inserido")
+		resultado = c.fetchall()
+		return resultado
 	except Error as ex:
 		print(ex)
 
-InserirDados("Angiene", "100")
+resposta=ConsultaDado("")
+
+for i in resposta:
+	print(i)

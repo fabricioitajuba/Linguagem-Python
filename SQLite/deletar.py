@@ -18,16 +18,16 @@ def ConexaoBanco():
 	return con
 
 #Inserir dados
-def InserirDados(nome, nota):
+def DeletaDado(id):
 
-	sql = "INSERT INTO notas (nome, nota) VALUES('"+ nome +"', '"+ nota +"')"
+	sql = "DELETE FROM notas WHERE id='"+ id+"'"
 	try:
 		conexao = ConexaoBanco()
 		c = conexao.cursor()
 		c.execute(sql)
 		conexao.commit()
-		print("Registro inserido")
+		print("Dado deletado")
 	except Error as ex:
 		print(ex)
 
-InserirDados("Angiene", "100")
+DeletaDado("9")

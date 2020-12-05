@@ -18,16 +18,16 @@ def ConexaoBanco():
 	return con
 
 #Inserir dados
-def InserirDados(nome, nota):
+def AtualizaDado(id, nome, nota):
 
-	sql = "INSERT INTO notas (nome, nota) VALUES('"+ nome +"', '"+ nota +"')"
+	sql = "UPDATE notas SET nome='"+nome+"', nota='"+nota+"' WHERE id='"+id+"'"
 	try:
 		conexao = ConexaoBanco()
 		c = conexao.cursor()
 		c.execute(sql)
 		conexao.commit()
-		print("Registro inserido")
+		print("Dado atualizado")
 	except Error as ex:
 		print(ex)
 
-InserirDados("Angiene", "100")
+AtualizaDado("10", "Andreia", "20")
