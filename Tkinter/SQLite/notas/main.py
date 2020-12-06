@@ -10,6 +10,17 @@ import banco_sqlite as bd
 
 # Funções
 
+#Trata o evento do mouse quando um ítem for selecionado
+def select_item(a):
+	item = tabela.selection()[0]
+	print(tabela.item(item)['values'][0]) #id
+	print(tabela.item(item)['values'][1]) #nome
+	print(tabela.item(item)['values'][2]) #nota
+
+	txt_nome.insert(str(tabela.item(item)['values'][1]))
+	txt_nota.insert(str(tabela.item(item)['values'][2]))
+
+
 #Função para inserir dado
 def btn_inserir():
 
@@ -99,6 +110,8 @@ tabela.heading('id', text='id')
 tabela.heading('nome', text='Nome')
 tabela.heading('nota', text='Nota')
 tabela.place(x=10, y=5, width=380, height=220)
+#Cria um evento no mouse para quando o ítem for selecionado
+tabela.bind('<ButtonRelease-1>', select_item)
 #Preenche a tabela com os dados do banco
 atualiza_tabela()
 
