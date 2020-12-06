@@ -13,12 +13,17 @@ import banco_sqlite as bd
 #Trata o evento do mouse quando um ítem for selecionado
 def select_item(a):
 	item = tabela.selection()[0]
-	print(tabela.item(item)['values'][0]) #id
-	print(tabela.item(item)['values'][1]) #nome
-	print(tabela.item(item)['values'][2]) #nota
+	#print(tabela.item(item)['values'][0]) #id
+	#print(tabela.item(item)['values'][1]) #nome
+	#print(tabela.item(item)['values'][2]) #nota
 
-	txt_nome.insert(str(tabela.item(item)['values'][1]))
-	txt_nota.insert(str(tabela.item(item)['values'][2]))
+	text = tabela.item(item)['values'][1]
+	txt_nome.delete(0, "end")
+	txt_nome.insert(0, text)
+
+	text = tabela.item(item)['values'][2]
+	txt_nota.delete(0, "end")
+	txt_nota.insert(0, text)
 
 
 #Função para inserir dado
