@@ -9,12 +9,37 @@ from tkinter import messagebox
 import banco_sqlite as bd
 
 # Funções
+
+#Função para inserir dado
 def btn_inserir():
 
 	res = messagebox.askyesno("Exemplo com SQLite", "Deseja realmente inserir?")
 
 	if res:
 		bd.InserirDados(con, txt_nome.get(), txt_nota.get())
+		txt_nome.delete(0, 'end')
+		txt_nota.delete(0, 'end')
+		atualiza_tabela()
+
+#Função para consultar dado(s)
+def btn_consultar():
+	#Deleta todo co conteúdo da tabela
+	tabela.delete(*tabela.get_children())
+	#Faz a consulta de todos ou um elemento do banco
+	res = bd.ConsultaDado(con, txt_nome.get())
+	#Envia-os para a tabela
+	for i in res:
+		tabela.insert("", "end", values = i)
+
+#Função para atualizar tabela
+def atualiza_tabela():
+	#Deleta todo co conteúdo da tabela
+	tabela.delete(*tabela.get_children())
+	#Faz a consulta de todos os elemento do banco
+	res = bd.ConsultaDado(con, "")
+	#Envia-os para a tabela
+	for i in res:
+		tabela.insert("", "end", values = i)
 
 # Rotinas iniciais
 
@@ -59,13 +84,13 @@ btn_deletar.place(x=100, y=5)
 btn_atualizar = Button(lbf_controle, text="Atualizar", command=btn_inserir)
 btn_atualizar.place(x=200, y=5)
 
-btn_atualizar = Button(lbf_controle, text="Consultar", command=btn_inserir)
+btn_atualizar = Button(lbf_controle, text="Consultar", command=btn_consultar)
 btn_atualizar.place(x=300, y=5)
 
 # Label frame Tabela
 lbf_tabela = LabelFrame(form, text = "Tabela", borderwidth = 1, relief = "solid")
 lbf_tabela.place(x=10, y=170, width=400, height=260)
-
+#Criação da tabela
 tabela = ttk.Treeview(lbf_tabela, columns=('id', 'nome', 'nota'), show='headings')
 tabela.column('id', minwidth=0, width=30)
 tabela.column('nome', minwidth=0, width=100)
@@ -74,5 +99,7 @@ tabela.heading('id', text='id')
 tabela.heading('nome', text='Nome')
 tabela.heading('nota', text='Nota')
 tabela.place(x=10, y=5, width=380, height=220)
+#Preenche a tabela com os dados do banco
+atualiza_tabela()
 
 form.mainloop()
