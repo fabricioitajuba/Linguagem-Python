@@ -12,18 +12,23 @@ import banco_sqlite as bd
 
 #Trata o evento do mouse quando um ítem for selecionado
 def select_item(a):
+
+	global id, nome, nota
+
 	item = tabela.selection()[0]
 	#print(tabela.item(item)['values'][0]) #id
 	#print(tabela.item(item)['values'][1]) #nome
 	#print(tabela.item(item)['values'][2]) #nota
 
-	text = tabela.item(item)['values'][1]
-	txt_nome.delete(0, "end")
-	txt_nome.insert(0, text)
+	id = tabela.item(item)['values'][0]
 
-	text = tabela.item(item)['values'][2]
+	nome = tabela.item(item)['values'][1]
+	txt_nome.delete(0, "end")
+	txt_nome.insert(0, nome)
+
+	nota = tabela.item(item)['values'][2]
 	txt_nota.delete(0, "end")
-	txt_nota.insert(0, text)
+	txt_nota.insert(0, nota)
 
 
 #Função para inserir dado
@@ -36,6 +41,28 @@ def btn_inserir():
 		txt_nome.delete(0, 'end')
 		txt_nota.delete(0, 'end')
 		atualiza_tabela()
+
+#Função para deletar dado
+def btn_deletar():
+
+	res = messagebox.askyesno("Exemplo com SQLite", "Deseja realmente deletar?")
+
+	if res:
+		bd.DeletaDado(con, str(id))
+		txt_nome.delete(0, 'end')
+		txt_nota.delete(0, 'end')		
+		atualiza_tabela()	
+
+#Função para atualizar dado(s)
+def btn_atualizar():
+
+	res = messagebox.askyesno("Exemplo com SQLite", "Deseja realmente atualizar?")
+
+	if res:
+		bd.AtualizaDado(con, str(id), txt_nome.get(), txt_nota.get())
+		txt_nome.delete(0, 'end')
+		txt_nota.delete(0, 'end')		
+		atualiza_tabela()	
 
 #Função para consultar dado(s)
 def btn_consultar():
@@ -94,14 +121,14 @@ lbf_controle.place(x=10, y=90, width=400, height=60)
 btn_inserir = Button(lbf_controle, text="Inserir", command=btn_inserir)
 btn_inserir.place(x=10, y=5)
 
-btn_deletar = Button(lbf_controle, text="Deletar", command=btn_inserir)
+btn_deletar = Button(lbf_controle, text="Deletar", command=btn_deletar)
 btn_deletar.place(x=100, y=5)
 
-btn_atualizar = Button(lbf_controle, text="Atualizar", command=btn_inserir)
+btn_atualizar = Button(lbf_controle, text="Atualizar", command=btn_atualizar)
 btn_atualizar.place(x=200, y=5)
 
-btn_atualizar = Button(lbf_controle, text="Consultar", command=btn_consultar)
-btn_atualizar.place(x=300, y=5)
+btn_consultar = Button(lbf_controle, text="Consultar", command=btn_consultar)
+btn_consultar.place(x=300, y=5)
 
 # Label frame Tabela
 lbf_tabela = LabelFrame(form, text = "Tabela", borderwidth = 1, relief = "solid")
