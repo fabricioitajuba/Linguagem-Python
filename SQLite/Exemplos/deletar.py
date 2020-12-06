@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#SQLite 3 - Conexao com o banco de dados
+#SQLite 3 - Deleta dados no banco
 #Fabrício de Lima Ribeiro
 #05/12/20
 
@@ -17,7 +17,7 @@ def ConexaoBanco():
 
 	return con
 
-#Inserir dados
+#Deletar dados
 def DeletaDado(id):
 
 	sql = "DELETE FROM notas WHERE id='"+ id+"'"
