@@ -50,7 +50,14 @@ def btn_deletar():
 	if res:
 		bd.DeletaDado(con, str(id))
 		txt_nome.delete(0, 'end')
-		txt_nota.delete(0, 'end')		
+		txt_nota.delete(0, 'end')
+		#Organizar a tabela de id
+		#sql = "SET @count = 0"
+		#bd.ExecutaSQL(con, sql)
+		#sql = "UPDATE 'notas' SET 'notas'.'id' = @count:= @count + 1"
+		#bd.ExecutaSQL(con, sql)
+		#sql = "ALTER TABLE 'banco'.'tabela' AUTO_INCREMENT = 1"
+		#bd.ExecutaSQL(con, sql)				
 		atualiza_tabela()	
 
 #Função para atualizar dado(s)
