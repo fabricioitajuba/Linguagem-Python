@@ -4,6 +4,7 @@
 
 import sqlite3
 from sqlite3 import Error
+from tkinter import messagebox
 
 #Criar a conexao
 def ConexaoBanco(banco):
@@ -11,9 +12,8 @@ def ConexaoBanco(banco):
 	con = 'Nome'
 	try:
 		con = sqlite3.connect(banco)
-		print("Banco conectado e/ou criado")
 	except Error as ex:
-		print(ex)
+		messagebox.showerror(title="Erro!", message=ex)
 
 	return con
 
@@ -24,9 +24,8 @@ def ExecutaSQL(conexao, sql):
 		c = conexao.cursor()
 		c.execute(sql)
 		conexao.commit()
-		print("Comando executado")
 	except Error as ex:
-		print(ex)
+		messagebox.showerror(title="Erro!", message=ex)
 
 #Inserir dados
 def InserirDados(conexao, nome, nota):
@@ -36,9 +35,8 @@ def InserirDados(conexao, nome, nota):
 		c = conexao.cursor()
 		c.execute(sql)
 		conexao.commit()
-		print("Registro inserido")
 	except Error as ex:
-		print(ex)
+		messagebox.showerror(title="Erro!", message=ex)
 
 #Deletar dados
 def DeletaDado(conexao, id):
@@ -48,9 +46,8 @@ def DeletaDado(conexao, id):
 		c = conexao.cursor()
 		c.execute(sql)
 		conexao.commit()
-		print("Dado deletado")
 	except Error as ex:
-		print(ex)
+		messagebox.showerror(title="Erro!", message=ex)
 
 #Atualiza dados
 def AtualizaDado(conexao, id, nome, nota):
@@ -60,9 +57,8 @@ def AtualizaDado(conexao, id, nome, nota):
 		c = conexao.cursor()
 		c.execute(sql)
 		conexao.commit()
-		print("Dado atualizado")
 	except Error as ex:
-		print(ex)
+		messagebox.showerror(title="Erro!", message=ex)
 
 #Consultar dados
 def ConsultaDado(conexao, nome):
@@ -74,4 +70,4 @@ def ConsultaDado(conexao, nome):
 		resultado = c.fetchall()
 		return resultado
 	except Error as ex:
-		print(ex)
+		messagebox.showerror(title="Erro!", message=ex)
