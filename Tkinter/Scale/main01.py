@@ -1,25 +1,27 @@
 # -*- coding: utf-8 -*-
 
 #Fabricio de Lima Ribeiro
-#08/11/2020
+#12/11/2020
 #Scale
 #para executar: $ python main01.py
 
 from tkinter import *
 
-def sel():
-   selection = "Value = " + str(var.get())
-   label.config(text = selection)
+def valorEscala():
+	print("Valor da escala: " + str(sc_escala.get()))
 
-root = Tk()
-var = DoubleVar()
-scale = Scale( root, variable = var )
-scale.pack(anchor=CENTER)
+app = Tk()
+app.title("Scale")
+app.geometry("500x300")
 
-button = Button(root, text="Get Scale Value", command=sel)
-button.pack(anchor=CENTER)
+lb_valor = Label(app, text="Valor")
+lb_valor.pack()
 
-label = Label(root)
-label.pack()
+sc_escala = Scale(app, from_=0, to=100, orient=HORIZONTAL)
+sc_escala.set(50)
+sc_escala.pack()
 
-root.mainloop()
+btn_valor = Button(app, text="Valor da escala", command=valorEscala)
+btn_valor.pack()
+
+app.mainloop()
