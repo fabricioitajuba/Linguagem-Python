@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #Exemplo de utilização do banco SQLite 3
 #Fabrício de Lima Ribeiro
-#06/12/20
+#13/12/20
 
 from tkinter import *
 from tkinter import ttk
@@ -9,6 +9,32 @@ from tkinter import messagebox
 import banco_sqlite as bd
 
 # Funções
+
+#Cria a tabela caso não exista
+def cria_tabela(con):
+	sql = "CREATE TABLE IF NOT EXISTS 'notas' ('id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'nome' TEXT, 'nota' INTEGER)"
+	bd.Envia_SQL(con, sql)
+
+#Insere dado
+def insere_dados(con, nome, nota):
+	sql = "INSERT INTO notas (nome, nota) VALUES('"+ nome +"', '"+ nota +"')"
+	bd.Envia_SQL(con, sql)
+
+#Deleta dado
+def deleta_dados(con, id):
+	sql = "DELETE FROM notas WHERE id='"+ id+"'"
+	bd.Envia_SQL(con, sql)
+
+#Atualiza dados
+def atualiza_dados(con, id, nome, nota):
+	sql = "UPDATE notas SET nome='"+nome+"', nota='"+nota+"' WHERE id='"+id+"'"
+	bd.Envia_SQL(con, sql)
+
+#Consulta dado
+def consulta_dado(con, nome):
+	sql = "SELECT * FROM notas WHERE nome LIKE '"+nome+"%'"
+	res = bd.Recebe_SQL(con, sql)
+	return res
 
 #Trata o evento do mouse quando um ítem for selecionado
 def select_item(a):
@@ -31,24 +57,24 @@ def select_item(a):
 	txt_nota.insert(0, nota)
 
 
-#Função para inserir dado
+#Botão para inserir dado
 def btn_inserir():
 
 	res = messagebox.askyesno("Exemplo com SQLite", "Deseja realmente inserir?")
 
 	if res:
-		bd.InserirDados(con, txt_nome.get(), txt_nota.get())
+		insere_dados(con, txt_nome.get(), txt_nota.get())
 		txt_nome.delete(0, 'end')
 		txt_nota.delete(0, 'end')
 		atualiza_tabela()
 
-#Função para deletar dado
+#Botão para deletar dado
 def btn_deletar():
 
 	res = messagebox.askyesno("Exemplo com SQLite", "Deseja realmente deletar?")
 
 	if res:
-		bd.DeletaDado(con, str(id))
+		deleta_dados(con, str(id))
 		txt_nome.delete(0, 'end')
 		txt_nota.delete(0, 'end')
 		#Organizar a tabela de id
@@ -60,23 +86,23 @@ def btn_deletar():
 		#bd.ExecutaSQL(con, sql)				
 		atualiza_tabela()	
 
-#Função para atualizar dado(s)
+#Botão para atualizar dado(s)
 def btn_atualizar():
 
 	res = messagebox.askyesno("Exemplo com SQLite", "Deseja realmente atualizar?")
 
 	if res:
-		bd.AtualizaDado(con, str(id), txt_nome.get(), txt_nota.get())
+		atualiza_dados(con, str(id), txt_nome.get(), txt_nota.get())
 		txt_nome.delete(0, 'end')
 		txt_nota.delete(0, 'end')		
 		atualiza_tabela()	
 
-#Função para consultar dado(s)
+#Botão para consultar dado(s)
 def btn_consultar():
 	#Deleta todo co conteúdo da tabela
 	tabela.delete(*tabela.get_children())
 	#Faz a consulta de todos ou um elemento do banco
-	res = bd.ConsultaDado(con, txt_nome.get())
+	res = consulta_dado(con, txt_nome.get())
 	#Envia-os para a tabela
 	for i in res:
 		tabela.insert("", "end", values = i)
@@ -86,19 +112,19 @@ def atualiza_tabela():
 	#Deleta todo co conteúdo da tabela
 	tabela.delete(*tabela.get_children())
 	#Faz a consulta de todos os elemento do banco
-	res = bd.ConsultaDado(con, "")
+	res = consulta_dado(con, "")
 	#Envia-os para a tabela
 	for i in res:
 		tabela.insert("", "end", values = i)
 
+##############################################################################
 # Rotinas iniciais
 
 #Realiza a conexao com o banco de dados. Caso não exista o mesmo será criado
 con = bd.ConexaoBanco("banco.db")
 
 #Cria uma tabela caso ela não exista
-sql = "CREATE TABLE IF NOT EXISTS 'notas' ('id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'nome' TEXT, 'nota' INTEGER)"
-bd.ExecutaSQL(con, sql)
+cria_tabela(con)
 
 #Criação do formulário
 form = Tk()

@@ -1,38 +1,65 @@
 # -*- coding: utf-8 -*-
 #Exemplo de utilização do banco SQLite 3
 #Fabrício de Lima Ribeiro
-#06/12/20
+#13/12/20
 
 import banco_sqlite as bd
+
+def cria_tabela(con):
+	sql = "CREATE TABLE IF NOT EXISTS 'notas' ('id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'nome' TEXT, 'nota' INTEGER)"
+	bd.Envia_SQL(con, sql)
+
+def insere_dados(con, nome, nota):
+	sql = "INSERT INTO notas (nome, nota) VALUES('"+ nome +"', '"+ nota +"')"
+	bd.Envia_SQL(con, sql)
+
+def deleta_dados(con, id):
+	sql = "DELETE FROM notas WHERE id='"+ id+"'"
+	bd.Envia_SQL(con, sql)
+
+def atualiza_dados(con, id, nome, nota):
+	sql = "UPDATE notas SET nome='"+nome+"', nota='"+nota+"' WHERE id='"+id+"'"
+	bd.Envia_SQL(con, sql)
+
+def consulta_dado(con, nome):
+	sql = "SELECT * FROM notas WHERE nome LIKE '"+nome+"%'"
+	res = bd.Recebe_SQL(con, sql)
+	return res
+
+
+# Programa principal
 
 #Realiza a conexao com o banco de dados. Caso não exista o mesmo será criado
 con = bd.ConexaoBanco("banco.db")
 
 #Cria uma tabela caso ela não exista
-sql = "CREATE TABLE IF NOT EXISTS 'notas' ('id' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 'nome' TEXT, 'nota' INTEGER)"
-bd.ExecutaSQL(con, sql)
+cria_tabela(con)
 
 #Insere dados
-bd.InserirDados(con, "Fabrício", "100")
+insere_dados(con, "Fabrício", "100")
+
 #Insere dados
-bd.InserirDados(con, "Angiene", "90")
+insere_dados(con, "Angiene", "90")
+
 #Insere dados
-bd.InserirDados(con, "Fabiano", "10")
+insere_dados(con, "Fabiano", "10")
+
 #Insere dados
-bd.InserirDados(con, "Andréia", "70")
+insere_dados(con, "Andréia", "70")
+
 #Insere dados
-bd.InserirDados(con, "Expedito", "15")
+insere_dados(con, "Expedito", "15")
 
 #Deleta dado
-bd.DeletaDado(con, "5")
+deleta_dados(con, "5")
 
 #Atualiza dado
-bd.AtualizaDado(con, "3", "Fabiano", "50")
+atualiza_dados(con, "3", "Fabiano", "50")
 
 #Consulta dado
-res = bd.ConsultaDado(con, "Fabiano")
+res = consulta_dado(con, "Fabiano")
 print(res)
 
 #Consulta dados
-res = bd.ConsultaDado(con, "")
+res = consulta_dado(con, "")
 print(res)
