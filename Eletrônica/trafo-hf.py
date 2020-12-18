@@ -16,7 +16,7 @@ Ep = float(input())
 print("Entre com a Impedancia do primário [ohms]:")
 Zp = int(input())
 
-print("Entre com a Impedancia do secundário [ohmss]:")
+print("Entre com a Impedancia do secundário [ohms]:")
 Zs = int(input())
 
 print("Entre com a frequencia de operação [kHz]")
