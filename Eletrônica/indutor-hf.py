@@ -15,24 +15,26 @@ print("Entre com o Al do nucleo escolhido [nH/n²]:")
 Al = int(input())
 Al /= 10**9
 
-print("Entre com a corrente desejada [A]:")
+print("Entre com a corrente de pico [A]:")
 I = float(input())
 
 print("Entre com a área esfetiva [cm²]:")
 Ae = float(input())
 Ae /= 10**4
 
-N = int(round(math.sqrt(L/Al), 0))
-F = N*I
-R = 1/Al
-phi = F/R
-B = phi/Ae
+N = math.sqrt(L/Al)
+
+#Cálculo do B da primeira maneira
+F = N*I #[AE]
+R = 1/Al #[N²/H]
+phi = F/R #[Wb]
+B = phi/Ae #[Tesla]
+
+#Cálculo do B da segunda maneira
+B2 = (L*I)/(Ae*N) #[Tesla]
 
 print(' ')
-print('Numero de espiras do indutor = ' + str(N) + " espiras")
-print('F='+str(F)+'[AE]')
-print('R='+str(R)+'[N²/H]')
-print('phi='+str(phi)+'[Wb]')
-print('Ae='+str(Ae)+'[m²]')
-print('B='+str(round(B,2))+'[Tesla]')
+print('Numero de espiras do indutor = ' + str(round(N,0)) + " espiras")
+print('B1='+str(round(B,2))+'[Tesla]')
+print('B2='+str(round(B2,2))+'[Tesla]')
 print(' ')
