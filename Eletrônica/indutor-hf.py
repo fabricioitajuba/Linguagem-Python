@@ -35,6 +35,6 @@ B2 = (L*I)/(Ae*N) #[Tesla]
 
 print(' ')
 print('Numero de espiras do indutor = ' + str(round(N,0)) + " espiras")
-print('B1='+str(round(B,2))+'[Tesla]')
-print('B2='+str(round(B2,2))+'[Tesla]')
+print('B1= '+str(round(B,2))+' [T]')
+print('B2= '+str(round(B2,2))+' [T]')
 print(' ')
