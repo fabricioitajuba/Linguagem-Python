@@ -1,0 +1,56 @@
+Influxdb com Python
+fonte:
+https://jensd.be/1249/linux/get-started-with-influxdb-and-python-on-linux
+
+- Para instalar os pacotes:
+$ sudo apt install influxdb influxdb-client python3-influxdb
+
+- Para iniciar o influxdb:
+$ sudo systemctl start influxdb
+
+- Para habilitar o influxdb:
+$ sudo systemctl enable influxdb
+
+- Para acessar o bando de dados:
+$ influx
+
+- Para sair:
+> exit
+
+- Para criar um usuário no influxdb:
+$ influx
+> create user admin with password 'admin' with all privileges
+
+- Para ver os usários do banco:
+> show users
+
+- Para acessar o banco utilizando login e senha:
+$ sudo vi /etc/influxdb/influxdb.conf
+
+- Descomente a seguinte linha:
+
+# auth-enabled = false
+
+para
+
+auth-enabled = true
+
+$ sudo systemctl restart influxdb
+
+- Para acessar o banco agora:
+$ influx -username admin -password admin
+
+- Para usar os dois exemplos em python
+
+- Instale o seguinte pacote:
+sudo apt install python3-influxdb
+
+- Entre no influx e crie o banco:
+$ influx
+> create database energy
+
+- Execute o arquivo write.py
+$ python3 write.py
+
+- Execute o arquivo read.py
+$ python3 read.py
