@@ -12,9 +12,9 @@ Vi=125
 Vip=20
 
 #Entre com a tensão de saída [V]:
-Vo=15
+Vo=12
 #Entre com a corrente máxima de saída [A]:
-Io=1.2
+Io=2
 
 #Entre com a tensão de saída auxiliar [V]:
 Voaux=15
@@ -28,15 +28,19 @@ Dmax=0.45
 #Entre com o rendimento esperado [%]:
 n=70
 
-#Parâmetros do transistor:
-RDSon=1.1
-tr=120
-tf=140
+#Parâmetros do transistor IRF840:
+RDSon=0.85
+tr=23
+tf=20
 #Características términcas:
 Tamb=50    #[°C]
 Tjmax=100  #[°C]
-Rthcd=0.25 #[°C/W]
+Rthcd=0.5 #[°C/W]
 Rthjc=1    #[°C/W]
+
+#Cálculo do snubber
+Voff=20 #[V]
+tfi=tf
 
 ## Constantes
 #Fator de utilização do primário
@@ -61,6 +65,7 @@ Fs=Fs*math.pow(10,3)
 n=n/math.pow(10,2)
 tr=tr*math.pow(10,-9)
 tf=tf*math.pow(10,-9)
+tfi=tfi*math.pow(10,-9)
 
 # Entrada
 #print("Entre com a tensão de entrada [V]:")
@@ -187,11 +192,16 @@ Dnom=(Np*(Vo+Vd))/(Np*(Vo+Vd)+Ns*Vi)
 Dmin=(Np*(Vo+Vd))/(Np*(Vo+Vd)+Ns*Vimax)
 Dmax=(Np*(Vo+Vd))/(Np*(Vo+Vd)+Ns*Vimin)
 
+Cs=(ISef*tfi)/(2*Voff)
+tonmin=Dmin/Fs
+Rs=tonmin/(3*Cs)
+
 #Ajustes
 Fs /= 1000
 n *= 100
 Co *= math.pow(10,6)
 Coaux *= math.pow(10,6)
+Cs *= math.pow(10,9)
 
 print('\n### Entrada:')
 print('Tensão mínima de entrada: ' + str(Vimin) + " [V]")
@@ -257,3 +267,15 @@ print('\nResistividade términa entre o dissipador e o ambiente: ' + str(round(R
 print('\nCiclo de trabalho minimo: ' + str(round(Dmin,3)) + ' para Vin= ' + str(Vimax))
 print('Ciclo de trabalho nominal: ' + str(round(Dnom,3)) + ' para Vin= ' + str(Vi))
 print('Ciclo de trabalho máximo: ' + str(round(Dmax,3)) + ' para Vin= ' + str(Vimin))
+
+print('\n### Snubber RCD')
+print('Cs: ' + str(round(Cs,3)) + ' [nF]')
+print('Rs: < ' + str(round(Rs,3)) + ' [ohms]')
+
+#Ip=0.25*ISef
+#Rs2=Vimax/Ip
+#Cs2=tonmin/(3*Rs2)
+
+#Cs2 *= math.pow(10,9)
+#print('\nCs2: ' + str(round(Cs2,3)) + ' [nF]')
+#print('Rs2: > ' + str(round(Rs2,3)) + ' [ohms]')
