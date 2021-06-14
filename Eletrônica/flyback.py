@@ -12,9 +12,9 @@ Vi=125
 Vip=20
 
 #Entre com a tensão de saída [V]:
-Vo=12
+Vo=18
 #Entre com a corrente máxima de saída [A]:
-Io=2
+Io=1
 
 #Entre com a tensão de saída auxiliar [V]:
 Voaux=15
@@ -29,18 +29,15 @@ Dmax=0.45
 n=70
 
 #Parâmetros do transistor IRF840:
-RDSon=0.85
-tr=23
-tf=20
+RDSon=1.1
+tr=120*math.pow(10,-9)
+tf=140*math.pow(10,-9)
+
 #Características términcas:
 Tamb=50    #[°C]
 Tjmax=100  #[°C]
-Rthcd=0.5 #[°C/W]
+Rthcd=0.25 #[°C/W]
 Rthjc=1    #[°C/W]
-
-#Cálculo do snubber
-Voff=20 #[V]
-tfi=tf
 
 ## Constantes
 #Fator de utilização do primário
@@ -63,9 +60,6 @@ uo=4*math.pi*math.pow(10,-7)
 #Ajustes
 Fs=Fs*math.pow(10,3)
 n=n/math.pow(10,2)
-tr=tr*math.pow(10,-9)
-tf=tf*math.pow(10,-9)
-tfi=tfi*math.pow(10,-9)
 
 # Entrada
 #print("Entre com a tensão de entrada [V]:")
@@ -140,6 +134,12 @@ Np=(dB*d*math.pow(10,4))/(0.4*math.pi*Ip)
 Ns=Np*(((Vo+Vd)*(1-Dmax))/(Vimin*Dmax))
 #Número de espiras do secundário auxiliar
 Naux=Np*(((Voaux+Vd)*(1-Dmax))/(Vimin*Dmax))
+#Ciclo de trabalho do conversor
+Dnom=(Np*(Vo+Vd))/(Np*(Vo+Vd)+Ns*Vi)
+Dmin=(Np*(Vo+Vd))/(Np*(Vo+Vd)+Ns*Vimax)
+#Dmax=(Np*(Vo+Vd))/(Np*(Vo+Vd)+Ns*Vimin)
+#Indutância do primário
+Lp=(Vimin*Dmax)/(Ip*Fs)
 
 #Capacitores de saida
 #Ondulação de tensão na saída
@@ -187,19 +187,17 @@ Ptotal=Pcond+Pcom
 #Características términcas
 Rthda=(Tjmax-Tamb-Ptotal*Rthjc)/Ptotal
 
-#Ciclo de trabalho
-Dnom=(Np*(Vo+Vd))/(Np*(Vo+Vd)+Ns*Vi)
-Dmin=(Np*(Vo+Vd))/(Np*(Vo+Vd)+Ns*Vimax)
-Dmax=(Np*(Vo+Vd))/(Np*(Vo+Vd)+Ns*Vimin)
-
-Cs=(ISef*tfi)/(2*Voff)
+Cs=(Ip*tf)/Vimin
 tonmin=Dmin/Fs
 Rs=tonmin/(3*Cs)
+Ides=Vimin/Rs
+Pr=(Cs*math.pow(Vimin,2)*Fs)/2
 
 #Ajustes
 Fs /= 1000
 n *= 100
 Co *= math.pow(10,6)
+Lp *= math.pow(10,6)
 Coaux *= math.pow(10,6)
 Cs *= math.pow(10,9)
 
@@ -230,30 +228,30 @@ print('Núcleo utilizado: ' + Núcleo)
 print('Produto das áreas AeAw: ' + str(round(AeAw,3)) + " [cm4]")
 #print('Entreferro total: ' + str(round(d*10,3)) + " [mm]")
 print('Entreferro: ' + str(round(lg*10,3)) + " [mm]")
-print('\nCorrente do primário: ' + str(round(Ip,3)) + " [A]")
+print('\nCorrente de pico do primário: ' + str(round(Ip,3)) + " [A]")
 print('Número de espiras do primário: ' + str(round(Np,0)) + " [Espiras]")
 print('Número de espiras do secundário: ' + str(round(Ns,0)) + " [Espiras]")
 print('Número de espiras do secundário auxiliar: ' + str(round(Naux,0)) + " [Espiras]")
+print('Indutância do primário: ' + str(round(Lp,0)) + " [uH]")
 
-print('\nCapacitor de saída: ' + str(round(Co,2)) + " [uF]")
-print('Capacitor de saída auxiliar: ' + str(round(Coaux,2)) + " [uF]")
-
-print('\nCorrente de pico no enrolamento secundário: ' + str(round(Iso,2)) + " [A]")
-print('Corrente de pico no enrolamento secundário auxiliar: ' + str(round(Ioaux,2)) + " [A]")
-
-print('\nResistência série equivalente do capacitor de saida: ' + str(round(RSEo,3)) + " [ohm]")
-print('Resistência série equivalente do capacitor de saida auxiliar: ' + str(round(RSEaux,3)) + " [ohm]")
+print('\nCorrente de pico no enrolamento secundário: ' + str(round(Iso,3)) + " [A]")
+print('Corrente de pico no enrolamento secundário auxiliar: ' + str(round(Ioaux,3)) + " [A]")
 
 print('\nTensão máxima reversa no diodo de saída: ' + str(round(Vdpks,2)) + " [V]")
 print('Tensão máxima reversa no diodo de saida auxiliar: ' + str(round(Vdpkaux,2)) + " [V]")
 
-print('\nCorrente eficaz no primário: ' + str(round(Ipef,2)) + " [A]")
-print('Corrente eficaz no secundário: ' + str(round(Ioef,2)) + " [A]")
-print('Corrente eficaz no secundário auxiliar: ' + str(round(Iauxef,2)) + " [A]")
+print('\nCorrente eficaz no primário: ' + str(round(Ipef,3)) + " [A]")
+print('Corrente eficaz no secundário: ' + str(round(Ioef,3)) + " [A]")
+print('Corrente eficaz no secundário auxiliar: ' + str(round(Iauxef,3)) + " [A]")
 
 print('\nÁrea do condutor primário: ' + str(Scup) + " [cm²]")
 print('Área do condutor secundário: ' + str(Scus) + " [cm²]")
 print('Área do condutor auxiliar: ' + str(Scuaux) + " [cm²]")
+
+print('\nCapacitor de saída: ' + str(round(Co,2)) + " [uF]")
+print('Capacitor de saída auxiliar: ' + str(round(Coaux,2)) + " [uF]")
+print('\nResistência série equivalente do capacitor de saida: ' + str(round(RSEo,3)) + " [ohm]")
+print('Resistência série equivalente do capacitor de saida auxiliar: ' + str(round(RSEaux,3)) + " [ohm]")
 
 print('\nTensão máxima sobre o transistor: ' + str(round(VSmáx,2)) + " [V]")
 print('Corrente média no transistor: ' + str(round(ISmed,3)) + " [A]")
@@ -269,13 +267,8 @@ print('Ciclo de trabalho nominal: ' + str(round(Dnom,3)) + ' para Vin= ' + str(V
 print('Ciclo de trabalho máximo: ' + str(round(Dmax,3)) + ' para Vin= ' + str(Vimin))
 
 print('\n### Snubber RCD')
-print('Cs: ' + str(round(Cs,3)) + ' [nF]')
-print('Rs: < ' + str(round(Rs,3)) + ' [ohms]')
-
-#Ip=0.25*ISef
-#Rs2=Vimax/Ip
-#Cs2=tonmin/(3*Rs2)
-
-#Cs2 *= math.pow(10,9)
-#print('\nCs2: ' + str(round(Cs2,3)) + ' [nF]')
-#print('Rs2: > ' + str(round(Rs2,3)) + ' [ohms]')
+print('Cs= ' + str(round(Cs,3)) + ' [nF]')
+print('Rs= ' + str(round(Rs,3)) + ' [ohms]')
+print('Idescarga= ' + str(round(Ides,3)) + ' [A]')
+print('Ip= ' + str(round(Ip,3)) + ' [A]')
+print('Potência dissipada no resistor= ' + str(round(Pr,3)) + ' [W]')
