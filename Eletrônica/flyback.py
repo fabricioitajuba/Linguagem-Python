@@ -12,9 +12,9 @@ Vi=125
 Vip=20
 
 #Entre com a tensão de saída [V]:
-Vo=18
+Vo=12
 #Entre com a corrente máxima de saída [A]:
-Io=1
+Io=1.5
 
 #Entre com a tensão de saída auxiliar [V]:
 Voaux=15
@@ -29,14 +29,14 @@ Dmax=0.45
 n=70
 
 #Parâmetros do transistor IRF840:
-RDSon=1.1
-tr=120*math.pow(10,-9)
-tf=140*math.pow(10,-9)
+RDSon=0.85
+tr=23*math.pow(10,-9)
+tf=20*math.pow(10,-9)
 
 #Características términcas:
 Tamb=50    #[°C]
 Tjmax=100  #[°C]
-Rthcd=0.25 #[°C/W]
+Rthcd=0.5 #[°C/W]
 Rthjc=1    #[°C/W]
 
 ## Constantes
@@ -139,7 +139,7 @@ Dnom=(Np*(Vo+Vd))/(Np*(Vo+Vd)+Ns*Vi)
 Dmin=(Np*(Vo+Vd))/(Np*(Vo+Vd)+Ns*Vimax)
 #Dmax=(Np*(Vo+Vd))/(Np*(Vo+Vd)+Ns*Vimin)
 #Indutância do primário
-Lp=(Vimin*Dmax)/(Ip*Fs)
+Lp=((math.pow(Np,2)*uo*Ae)/d)*math.pow(10,-2)
 
 #Capacitores de saida
 #Ondulação de tensão na saída
