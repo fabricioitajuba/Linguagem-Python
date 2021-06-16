@@ -61,8 +61,10 @@ else:
 #Número de espiras
 N = math.ceil(((L*Ipk)/(Bmax*Ae))*math.pow(10,4))
 
+#Entreferro total
+delta = round(((math.pow(N,2)*uo*Ae)/L)*math.pow(10,-1),3)
 #Entreferro
-lg = round(((math.pow(N,2)*uo*Ae)/L)*math.pow(10,-1),3)
+lg = delta/2
 
 print('Núcleo utilizado: ' + Núcleo)
 print('Produto das áreas AeAw: ' + str(round(AeAw,3)) + " [cm4]")
