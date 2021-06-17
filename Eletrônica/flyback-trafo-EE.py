@@ -148,14 +148,11 @@ print('\n### Secundário:')
 for x in range(0, nsaidas):
     print('Corrente de pico no enrolamento secundário-' + str(x+1)  + " = " + str(round(Ispk[x],3)) + " [A]")
 
-#print('Corrente eficaz no secundário: ' + str(round(Ioef,3)) + " [A]")
 for x in range(0, nsaidas):
     print('Corrente eficaz no enrolamento secundário-' + str(x+1)  + " = " + str(round(Isef[x],3)) + " [A]")
 
-#print('Área do condutor secundário: ' + str(Scus) + " [cm²]")
 for x in range(0, nsaidas):
-    print('Área do condutor secundário-' + str(x+1)  + " = " + str(Iscu[x]) + " [A]")
+    print('Área do condutor secundário-' + str(x+1)  + " = " + str(Iscu[x]) + " [cm²]")
 
-#print('Número de espiras do secundário: ' + str(round(Ns,0)) + " [Espiras]")
 for x in range(0, nsaidas):
-    print('Número de espiras do secundário-' + str(x+1)  + " = " + str(math.ceil(Ns[x])) + " [A]")
+    print('Número de espiras do secundário-' + str(x+1)  + " = " + str(math.ceil(Ns[x])) + " [Espiras]")
