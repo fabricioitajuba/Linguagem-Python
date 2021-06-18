@@ -2,7 +2,6 @@
 #Fabricio de Lima Ribeiro
 #17/06/2021
 #Cálculo do transformador do conversor flyback
-#obs: não considera as quedas nos diodos
 #para executar: $ python flyback.py
 
 import math
@@ -38,6 +37,10 @@ Vip = int(input())
 print("Entre com o número de saídas:")
 nsaidas = int(input())
 
+#Queda nos diodos
+print("Entre com a queda de tensão nos diodos [V]:")
+Vd = float(input())
+
 for x in range(0, nsaidas):
   print("Entre com a tensão da saída-" + str(x+1) + " [V]")
   Vs.append(float(input()))
@@ -47,9 +50,9 @@ for x in range(0, nsaidas):
 # Característica do conversor
 print("Entre com a frequencia de operação [kHz]")
 Fs = int(input())*1000
-print("Entre com a máxima razão cíclica")
+print("Entre com a razão cíclica máxima (normalmente 0.45)")
 Dmax = float(input())
-print("Entre com o rendimento esperado [%]")
+print("Entre com o rendimento esperado [%] (normalmente 70%)")
 n = int(input())/100
 
 #Tensão de entrada máxima
@@ -59,7 +62,7 @@ Vimin=Vi*((100-Vip)/100)
 
 #Potências nas saídas
 for x in range(0, nsaidas):
-  Ps.append(Vs[x]*Is[x])
+    Ps.append((Vs[x]+Vd)*Is[x])
 
 #Potência total de saída
 Po=0
@@ -71,7 +74,9 @@ Pin=Po/n
 
 ##Cálculo do transformador
 #Produto das áreas
-AeAw=round((1.1*Po*10000)/(kp*kw*J*Fs*dB),2)
+#AeAw=round((1.1*Po*10000)/(kp*kw*J*Fs*dB),2)
+AeAw=round(((Po/(n*dB*kp*kw*J*Fs))*math.sqrt(4/3*Dmax))*math.pow(10,4),2)
+
 #Escolha do núcleo
 if AeAw < 0.08:
   Núcleo = "E-20"
@@ -110,7 +115,7 @@ Np=(dB*d*math.pow(10,4))/(0.4*math.pi*Ip)
 
 #Número de espiras dos secundário
 for x in range(0, nsaidas):
-    Ns.append(Np*((Vs[x]*(1-Dmax))/(Vimin*Dmax)))
+    Ns.append(Np*(((Vs[x]+Vd)*(1-Dmax))/(Vimin*Dmax)))
 
 #Indutância do primário
 Lp=((math.pow(Np,2)*uo*Ae)/d)*math.pow(10,-2)
@@ -136,6 +141,8 @@ print('\n### Transformador:')
 print('Núcleo utilizado: ' + Núcleo)
 print('Produto das áreas AeAw: ' + str(round(AeAw,3)) + " [cm4]")
 print('Entreferro: ' + str(round(lg*10,3)) + " [mm]")
+print('Potência total de saída: ' + str(round(Po,3)) + " [W]")
+print('Potência total de entrada: ' + str(round(Pin,3)) + " [W]")
 
 print('\n### Primário:')
 print('Corrente de pico do primário: ' + str(round(Ip,3)) + " [A]")
