@@ -1,0 +1,111 @@
+Entre com a tensão de entrada [V]:
+125
+Entre com a variação máxima de entrada [%]:
+20
+Entre com o número de saídas:
+9
+Entre com a queda de tensão nos diodos [V]:
+1
+Entre com a tensão da saída-1 [V]
+18
+Entre com a corrente da saída-1 [A]
+0.1
+Entre com a tensão da saída-2 [V]
+18
+Entre com a corrente da saída-2 [A]
+0.1
+Entre com a tensão da saída-3 [V]
+18
+Entre com a corrente da saída-3 [A]
+0.1
+Entre com a tensão da saída-4 [V]
+18
+Entre com a corrente da saída-4 [A]
+0.1
+Entre com a tensão da saída-5 [V]
+27
+Entre com a corrente da saída-5 [A]
+0.1
+Entre com a tensão da saída-6 [V]
+27
+Entre com a corrente da saída-6 [A]
+0.1
+Entre com a tensão da saída-7 [V]
+27
+Entre com a corrente da saída-7 [A]
+0.1
+Entre com a tensão da saída-8 [V]
+27
+Entre com a corrente da saída-8 [A]
+0.1
+Entre com a tensão da saída-9 [V]
+15
+Entre com a corrente da saída-9 [A]
+0.05
+Entre com a frequencia de operação [kHz]
+40
+Entre com a razão cíclica máxima (normalmente 0.45)
+0.45
+Entre com o rendimento esperado [%] (normalmente 70%)
+70
+
+### Transformador:
+Núcleo utilizado: E-30/14
+Produto das áreas AeAw: 0.5 [cm4]
+Entreferro: 0.226 [mm]
+Potência total de saída: 19.6 [W]
+Potência total de entrada: 28.0 [W]
+
+### Primário:
+Corrente de pico do primário: 1.244 [A]
+Corrente eficaz do primário: 0.482 [A]
+Área do condutor primário: 0.0016065708695378914 [cm²]
+Número de espiras do primário: 53 [Espiras]
+Indutância do primário: 904.0 [uH]
+
+### Secundário(s):
+
+Corrente de pico no enrolamento secundário-1 = 0.364 [A]
+Corrente de pico no enrolamento secundário-2 = 0.364 [A]
+Corrente de pico no enrolamento secundário-3 = 0.364 [A]
+Corrente de pico no enrolamento secundário-4 = 0.364 [A]
+Corrente de pico no enrolamento secundário-5 = 0.364 [A]
+Corrente de pico no enrolamento secundário-6 = 0.364 [A]
+Corrente de pico no enrolamento secundário-7 = 0.364 [A]
+Corrente de pico no enrolamento secundário-8 = 0.364 [A]
+Corrente de pico no enrolamento secundário-9 = 0.182 [A]
+
+Corrente eficaz no enrolamento secundário-1 = 0.156 [A]
+Corrente eficaz no enrolamento secundário-2 = 0.156 [A]
+Corrente eficaz no enrolamento secundário-3 = 0.156 [A]
+Corrente eficaz no enrolamento secundário-4 = 0.156 [A]
+Corrente eficaz no enrolamento secundário-5 = 0.156 [A]
+Corrente eficaz no enrolamento secundário-6 = 0.156 [A]
+Corrente eficaz no enrolamento secundário-7 = 0.156 [A]
+Corrente eficaz no enrolamento secundário-8 = 0.156 [A]
+Corrente eficaz no enrolamento secundário-9 = 0.078 [A]
+
+Área do condutor secundário-1 = 0.000518999296107682 [cm²]
+Área do condutor secundário-2 = 0.000518999296107682 [cm²]
+Área do condutor secundário-3 = 0.000518999296107682 [cm²]
+Área do condutor secundário-4 = 0.000518999296107682 [cm²]
+Área do condutor secundário-5 = 0.000518999296107682 [cm²]
+Área do condutor secundário-6 = 0.000518999296107682 [cm²]
+Área do condutor secundário-7 = 0.000518999296107682 [cm²]
+Área do condutor secundário-8 = 0.000518999296107682 [cm²]
+Área do condutor secundário-9 = 0.000259499648053841 [cm²]
+
+Número de espiras do secundário-1 = 13 [Espiras]
+Número de espiras do secundário-2 = 13 [Espiras]
+Número de espiras do secundário-3 = 13 [Espiras]
+Número de espiras do secundário-4 = 13 [Espiras]
+Número de espiras do secundário-5 = 18 [Espiras]
+Número de espiras do secundário-6 = 18 [Espiras]
+Número de espiras do secundário-7 = 18 [Espiras]
+Número de espiras do secundário-8 = 18 [Espiras]
+Número de espiras do secundário-9 = 11 [Espiras]
+
+### Cíclos de trabalho do transformador:
+Ciclo de trabalho minimo: 0.35 para Vin= 150.0 [V]
+Ciclo de trabalho nominal: 0.4 para Vin= 125.0 [V]
+Ciclo de trabalho máximo: 0.45 para Vin= 100.0 [V]

@@ -124,11 +124,11 @@ Lp=((math.pow(Np,2)*uo*Ae)/d)*math.pow(10,-2)
 for x in range(0, nsaidas):
     Ispk.append((2*Is[x])/(1-Dmax))
 
-#Corrente eficaz nos enrolamentos
+#Corrente eficaz nos enrolamentos secundários
 for x in range(0, nsaidas):
-    Isef.append(Ispk[x]*math.sqrt(Dmax/3))
+    Isef.append(Ispk[x]*math.sqrt((1-Dmax)/3))
 
-#Area dos condutores
+#Area dos condutores secundários
 for x in range(0, nsaidas):
     Iscu.append(Isef[x]/J)
 
@@ -156,7 +156,7 @@ print('Área do condutor primário: ' + str(Scu) + " [cm²]")
 print('Número de espiras do primário: ' + str(math.ceil(Np)) + " [Espiras]")
 print('Indutância do primário: ' + str(round(Lp,0)) + " [uH]")
 
-print('\n### Secundário:')
+print('\n### Secundário(s):')
 for x in range(0, nsaidas):
     print('Corrente de pico no enrolamento secundário-' + str(x+1)  + " = " + str(round(Ispk[x],3)) + " [A]")
 
