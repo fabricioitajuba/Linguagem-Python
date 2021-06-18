@@ -170,6 +170,6 @@ for x in range(0, nsaidas):
     print('Número de espiras do secundário-' + str(x+1)  + " = " + str(math.ceil(Ns[x])) + " [Espiras]")
 
 print('\n### Cíclos de trabalho do transformador:')
-print('Ciclo de trabalho minimo: ' + str(round(Dmin,2)) + ' para Vin= ' + str(Vimax))
-print('Ciclo de trabalho nominal: ' + str(round(Dnom,2)) + ' para Vin= ' + str(Vi))
-print('Ciclo de trabalho máximo: ' + str(round(Dmax,2)) + ' para Vin= ' + str(Vimin))
+print('Ciclo de trabalho minimo: ' + str(round(Dmin,2)) + ' para Vin= ' + str(round(Vimax,2)) + ' [V]')
+print('Ciclo de trabalho nominal: ' + str(round(Dnom,2)) + ' para Vin= ' + str(round(Vi,2)) + ' [V]')
+print('Ciclo de trabalho máximo: ' + str(round(Dmax,2)) + ' para Vin= ' + str(round(Vimin,2)) + ' [V]')
