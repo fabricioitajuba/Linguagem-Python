@@ -44,3 +44,8 @@ Corrente eficaz no enrolamento secundário-2 = 0.07 [A]
 Área do condutor secundário-2 = 0.00023472626340651013 [cm²]
 Número de espiras do secundário-1 = 9 [Espiras]
 Número de espiras do secundário-2 = 11 [Espiras]
+
+### Cíclos de trabalho do transformador:
+Ciclo de trabalho minimo: 0.35 para Vin= 150.0
+Ciclo de trabalho nominal: 0.4 para Vin= 125.0
+Ciclo de trabalho máximo: 0.45 para Vin= 100.0

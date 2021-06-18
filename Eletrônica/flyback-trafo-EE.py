@@ -132,6 +132,11 @@ for x in range(0, nsaidas):
 for x in range(0, nsaidas):
     Iscu.append(Isef[x]/J)
 
+#Ciclos de trabalho do conversor
+Dnom=(Np*(Vs[0]+Vd))/(Np*(Vs[0]+Vd)+Ns[0]*Vi)
+Dmin=(Np*(Vs[0]+Vd))/(Np*(Vs[0]+Vd)+Ns[0]*Vimax)
+Dmax=(Np*(Vs[0]+Vd))/(Np*(Vs[0]+Vd)+Ns[0]*Vimin)
+
 #Ajustes
 Fs /= 1000
 n *= 100
@@ -163,3 +168,8 @@ for x in range(0, nsaidas):
 
 for x in range(0, nsaidas):
     print('Número de espiras do secundário-' + str(x+1)  + " = " + str(math.ceil(Ns[x])) + " [Espiras]")
+
+print('\n### Cíclos de trabalho do transformador:')
+print('Ciclo de trabalho minimo: ' + str(round(Dmin,2)) + ' para Vin= ' + str(Vimax))
+print('Ciclo de trabalho nominal: ' + str(round(Dnom,2)) + ' para Vin= ' + str(Vi))
+print('Ciclo de trabalho máximo: ' + str(round(Dmax,2)) + ' para Vin= ' + str(Vimin))
