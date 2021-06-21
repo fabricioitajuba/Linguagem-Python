@@ -1,0 +1,51 @@
+Entre com a tensão de entrada [V]:
+296.5
+Entre com a variação máxima de entrada [%]:
+15
+Entre com o número de saídas:
+1
+Entre com a queda de tensão no(s) diodo(s) [V]:
+1.5
+Entre com a tensão da saída-1 [V]
+13
+Entre com a corrente da saída-1 [A]
+6.897
+Entre com a frequencia de operação [kHz]
+28
+Entre com a razão cíclica máxima (normalmente 0.45)
+0.4
+Entre com o rendimento esperado [%] (normalmente 70%)
+70
+
+### Transformador:
+Núcleo utilizado: E-42/15
+Produto das áreas AeAw: 1.86 [cm4]
+Entreferro total: 1.134 [mm]
+Entreferro (dos lados): 0.567 [mm]
+Potência total de saída: 100.007 [W]
+Potência total de entrada: 142.866 [W]
+Profundidade de penetração (efeito skin): 0.08964214570007951 [cm²]
+
+### Primário:
+Corrente de pico do primário: 2.834 [A]
+Corrente eficaz do primário: 1.035 [A]
+Área do condutor primário: 0.0025874141334778955 [cm²]
+Número de espiras do primário: 80 [Espiras]
+Indutância magnetizante do primário: 1277.18 [uH]
+
+### Secundário(s):
+Corrente de pico no enrolamento secundário-1 = 32.393 [A]
+Corrente eficaz no enrolamento secundário-1 = 14.487 [A]
+Área do condutor secundário-1 = 0.036216253601636175 [cm²]
+Número de espiras do secundário-1 = 7 [Espiras]
+Indutância(s) magnetizante(s) do(s) secundário(s)-1 = 9.778 [uH]
+
+### Cíclos de trabalho do transformador:
+Ciclo de trabalho minimo: 0.33 para Vin= 340.97 [V]
+Ciclo de trabalho nominal: 0.36 para Vin= 296.5 [V]
+Ciclo de trabalho máximo: 0.4 para Vin= 252.03 [V]
+
+### Obs:
+- Consultar a tabela de fios AWG, achar um condutor com diâmetro do cobre acima da profundidade de penetração;
+- O número de condutores em paralelo do secundário é a divisão entre a área de cobre do condutor pela
+  área de cobre do condutor achado na tabela. n(condutores)=Ss/Sskin

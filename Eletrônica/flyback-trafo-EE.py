@@ -14,6 +14,7 @@ Ns = []
 Ispk = []
 Isef = []
 Iscu = []
+Lms = []
 
 ## Constantes
 #Fator de utilização do primário
@@ -21,9 +22,9 @@ kp=0.5
 #Fator de utilização da área do enrolamento
 kw=0.4
 #Densidade de corrente nos condutores
-J=300
+J=400
 #Máxima variação da densidade de fluxo magnético
-dB=0.18
+dB=0.25
 #uo
 uo=4*math.pi*math.pow(10,-7)
 
@@ -38,7 +39,7 @@ print("Entre com o número de saídas:")
 nsaidas = int(input())
 
 #Queda nos diodos
-print("Entre com a queda de tensão nos diodos [V]:")
+print("Entre com a queda de tensão no(s) diodo(s) [V]:")
 Vd = float(input())
 
 for x in range(0, nsaidas):
@@ -111,18 +112,20 @@ Ief=Ip*math.sqrt(Dmax/3)
 #Área do condutor primário
 Scu=Ief/J
 #Número de espiras do primário
-Np=(dB*d*math.pow(10,4))/(0.4*math.pi*Ip)
+Np=math.ceil((dB*d*math.pow(10,4))/(0.4*math.pi*Ip))
 
 #Número de espiras dos secundário
 for x in range(0, nsaidas):
-    Ns.append(Np*(((Vs[x]+Vd)*(1-Dmax))/(Vimin*Dmax)))
+    Ns.append(math.ceil(Np*(((Vs[x]+Vd)*(1-Dmax))/(Vimin*Dmax))))
 
-#Indutância do primário
-Lp=((math.pow(Np,2)*uo*Ae)/d)*math.pow(10,-2)
+#Indutância magnetizante do primário
+#Lp=((math.pow(Np,2)*uo*Ae)/d)*math.pow(10,-2)
+Lmp=(Np*dB*Ae)/Ip
 
 #Correntes de pico nos enrolamentos secundários
 for x in range(0, nsaidas):
-    Ispk.append((2*Is[x])/(1-Dmax))
+    #Ispk.append((2*Is[x])/(1-Dmax))
+    Ispk.append(Ip*Np/Ns[x])
 
 #Corrente eficaz nos enrolamentos secundários
 for x in range(0, nsaidas):
@@ -132,29 +135,40 @@ for x in range(0, nsaidas):
 for x in range(0, nsaidas):
     Iscu.append(Isef[x]/J)
 
+#Indutância magnetizante do secundário:
+for x in range(0, nsaidas):
+    Lms.append(((Ns[x]*dB*Ae)/Ispk[x])*math.pow(10,2))
+
 #Ciclos de trabalho do conversor
 Dnom=(Np*(Vs[0]+Vd))/(Np*(Vs[0]+Vd)+Ns[0]*Vi)
 Dmin=(Np*(Vs[0]+Vd))/(Np*(Vs[0]+Vd)+Ns[0]*Vimax)
 Dmax=(Np*(Vs[0]+Vd))/(Np*(Vs[0]+Vd)+Ns[0]*Vimin)
 
+#Profundidade de penetração
+skin=(2*7.5)/math.sqrt(Fs)
+
 #Ajustes
 Fs /= 1000
 n *= 100
-Lp *= math.pow(10,6)
+#Lp *= math.pow(10,6)
+Lmp *= math.pow(10,2)
 
 print('\n### Transformador:')
 print('Núcleo utilizado: ' + Núcleo)
 print('Produto das áreas AeAw: ' + str(round(AeAw,3)) + " [cm4]")
-print('Entreferro: ' + str(round(lg*10,3)) + " [mm]")
+print('Entreferro total: ' + str(round(d*10,3)) + " [mm]")
+print('Entreferro (dos lados): ' + str(round(lg*10,3)) + " [mm]")
 print('Potência total de saída: ' + str(round(Po,3)) + " [W]")
 print('Potência total de entrada: ' + str(round(Pin,3)) + " [W]")
+print('Profundidade de penetração (efeito skin): ' + str(round(skin,3)) + " [cm²]")
 
 print('\n### Primário:')
 print('Corrente de pico do primário: ' + str(round(Ip,3)) + " [A]")
 print('Corrente eficaz do primário: ' + str(round(Ief,3)) + " [A]")
 print('Área do condutor primário: ' + str(Scu) + " [cm²]")
-print('Número de espiras do primário: ' + str(math.ceil(Np)) + " [Espiras]")
-print('Indutância do primário: ' + str(round(Lp,0)) + " [uH]")
+print('Número de espiras do primário: ' + str(Np) + " [Espiras]")
+#print('Indutância do primário: ' + str(round(Lp,3)) + " [uH]")
+print('Indutância magnetizante do primário: ' + str(round(Lmp,3)) + " [uH]")
 
 print('\n### Secundário(s):')
 for x in range(0, nsaidas):
@@ -167,9 +181,17 @@ for x in range(0, nsaidas):
     print('Área do condutor secundário-' + str(x+1)  + " = " + str(Iscu[x]) + " [cm²]")
 
 for x in range(0, nsaidas):
-    print('Número de espiras do secundário-' + str(x+1)  + " = " + str(math.ceil(Ns[x])) + " [Espiras]")
+    print('Número de espiras do secundário-' + str(x+1)  + " = " + str(Ns[x]) + " [Espiras]")
+
+for x in range(0, nsaidas):
+    print('Indutância(s) magnetizante(s) do(s) secundário(s)-' + str(x+1)  + " = " + str(round(Lms[x],3)) + " [uH]")
 
 print('\n### Cíclos de trabalho do transformador:')
 print('Ciclo de trabalho minimo: ' + str(round(Dmin,2)) + ' para Vin= ' + str(round(Vimax,2)) + ' [V]')
 print('Ciclo de trabalho nominal: ' + str(round(Dnom,2)) + ' para Vin= ' + str(round(Vi,2)) + ' [V]')
 print('Ciclo de trabalho máximo: ' + str(round(Dmax,2)) + ' para Vin= ' + str(round(Vimin,2)) + ' [V]')
+
+print('\n### Obs:')
+print('- Consultar a tabela de fios AWG, achar um condutor com diâmetro do cobre acima da profundidade de penetração;')
+print('- O número de condutores em paralelo do secundário é a divisão entre a área de cobre do condutor pela')
+print('  área de cobre do condutor achado na tabela. n(condutores)=Ss/Sskin')
