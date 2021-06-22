@@ -22,9 +22,11 @@ kp=0.5
 #Fator de utilização da área do enrolamento
 kw=0.4
 #Densidade de corrente nos condutores
-J=400
+#J=400
+J=300
 #Máxima variação da densidade de fluxo magnético
-dB=0.25
+#dB=0.25
+dB=0.18
 #uo
 uo=4*math.pi*math.pow(10,-7)
 
@@ -82,24 +84,31 @@ AeAw=round(((Po/(n*dB*kp*kw*J*Fs))*math.sqrt(4/3*Dmax))*math.pow(10,4),2)
 if AeAw < 0.08:
   Núcleo = "E-20"
   Ae=0.312
+  Aw=0.26
 elif AeAw >= 0.08 and AeAw < 0.48:
   Núcleo = "E-30/7"
   Ae=0.6
+  Aw=0.8
 elif AeAw >= 0.48 and AeAw < 1.02:
   Núcleo = "E-30/14"
   Ae=1.2
+  Aw=0.85
 elif AeAw >= 1.02 and AeAw < 2.84:
   Núcleo = "E-42/15"
   Ae=1.81
+  Aw=1.57
 elif AeAw >= 2.84 and AeAw < 3.77:
   Núcleo = "E-42/20"
   Ae=2.4
+  Aw=1.57
 elif AeAw >= 3.77 and AeAw < 8.85:
   Núcleo = "E-55"
-  Ae=3.54      
+  Ae=3.54
+  Aw=2.5      
 else:
   Núcleo = "Não presente no banco de dados"
   Ae=1
+  Aw=1
 
 #Entreferro total
 d=(2*uo*Po*math.pow(10,4))/(math.pow(dB,2)*Ae*math.pow(10,-2)*n*Fs)
@@ -148,6 +157,16 @@ Dmax=(Np*(Vs[0]+Vd))/(Np*(Vs[0]+Vd)+Ns[0]*Vimin)
 skin=7.5/math.sqrt(Fs)
 dmax=2*skin
 
+#Área de cobre total
+Scutotal=0
+for x in range(0, nsaidas):
+    Scutotal = Scutotal + Iscu[x]*Ns[x]
+
+Scutotal = Scutotal + Scu*Np
+
+#Possibilidade de execussão
+ku = Scutotal/Aw
+
 #Ajustes
 Fs /= 1000
 n *= 100
@@ -163,6 +182,7 @@ print('Potência total de saída: ' + str(round(Po,3)) + " [W]")
 print('Potência total de entrada: ' + str(round(Pin,3)) + " [W]")
 print('Profundidade de penetração (efeito skin): ' + str(round(skin,3)) + " [cm]")
 print('Diâmetro máximo (efeito skin): ' + str(round(dmax,3)) + " [cm]")
+print('Possibilidade de execussão (ku > 3): ' + str(round(ku,3)))
 
 print('\n### Primário:')
 print('Corrente de pico do primário: ' + str(round(Ip,3)) + " [A]")
