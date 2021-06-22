@@ -124,8 +124,8 @@ Lmp=(Np*dB*Ae)/Ip
 
 #Correntes de pico nos enrolamentos secundários
 for x in range(0, nsaidas):
-    #Ispk.append((2*Is[x])/(1-Dmax))
-    Ispk.append(Ip*Np/Ns[x])
+    Ispk.append((2*Is[x])/(1-Dmax))
+    #Ispk.append(Ip*Np/Ns[x])
 
 #Corrente eficaz nos enrolamentos secundários
 for x in range(0, nsaidas):
@@ -145,7 +145,8 @@ Dmin=(Np*(Vs[0]+Vd))/(Np*(Vs[0]+Vd)+Ns[0]*Vimax)
 Dmax=(Np*(Vs[0]+Vd))/(Np*(Vs[0]+Vd)+Ns[0]*Vimin)
 
 #Profundidade de penetração
-skin=(2*7.5)/math.sqrt(Fs)
+skin=7.5/math.sqrt(Fs)
+dmax=2*skin
 
 #Ajustes
 Fs /= 1000
@@ -160,7 +161,8 @@ print('Entreferro total: ' + str(round(d*10,3)) + " [mm]")
 print('Entreferro (dos lados): ' + str(round(lg*10,3)) + " [mm]")
 print('Potência total de saída: ' + str(round(Po,3)) + " [W]")
 print('Potência total de entrada: ' + str(round(Pin,3)) + " [W]")
-print('Profundidade de penetração (efeito skin): ' + str(round(skin,3)) + " [cm²]")
+print('Profundidade de penetração (efeito skin): ' + str(round(skin,3)) + " [cm]")
+print('Diâmetro máximo (efeito skin): ' + str(round(dmax,3)) + " [cm]")
 
 print('\n### Primário:')
 print('Corrente de pico do primário: ' + str(round(Ip,3)) + " [A]")
